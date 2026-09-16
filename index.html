@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pamela Hoi is a Kuala Lumpur-based creative marketer and designer working across campaigns, content, performance creative, branding and merchandise.">
+  <title>Pamela Hoi — Creative Marketer + Designer</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    :root {
+      --paper: #f4eddf;
+      --paper-2: #ece3d3;
+      --ink: #111111;
+      --navy: #0c3154;
+      --blue: #dceef4;
+      --gold: #b7995d;
+      --muted: #6f6a61;
+      --line: rgba(17,17,17,.17);
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    body.modal-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img { display: block; width: 100%; }
+    .shell { width: min(100% - 40px, 1320px); margin-inline: auto; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { font-size: 1.06rem; font-weight: 700; letter-spacing: -.02em; }
+    .nav-links { display: flex; align-items: center; gap: clamp(18px, 3vw, 42px); }
+    .nav-links a { font-size: .9rem; color: var(--muted); transition: color .2s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); }
+    .nav-links .contact-link { color: var(--paper); background: var(--ink); padding: 10px 16px; border-radius: 999px; }
+
+    .hero {
+      min-height: calc(100svh - 74px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(330px, .65fr);
+      gap: clamp(28px, 5vw, 78px);
+      align-items: center;
+      padding-block: clamp(70px, 10vw, 130px);
+    }
+    .eyebrow { margin: 0 0 26px; font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 920px;
+      margin-bottom: 34px;
+      font-size: clamp(3.8rem, 8.7vw, 8.1rem);
+      line-height: .87;
+      letter-spacing: -.075em;
+      font-weight: 700;
+    }
+    h1 em { display: block; color: var(--navy); font-family: var(--serif); font-weight: 400; letter-spacing: -.055em; }
+    .hero-copy { max-width: 680px; font-size: clamp(1.08rem, 1.8vw, 1.35rem); line-height: 1.55; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 20px; border: 1px solid var(--ink); border-radius: 999px; font-weight: 700; }
+    .button.primary { background: var(--ink); color: white; }
+    .button:hover { transform: translateY(-2px); }
+
+    .hero-aside { position: relative; align-self: stretch; display: grid; align-content: center; }
+    .portrait-wrap { position: relative; width: min(100%, 430px); margin-left: auto; }
+    .portrait-wrap::before { content: ''; position: absolute; inset: -18px 18px 18px -18px; border: 1px solid var(--navy); border-radius: 32px; }
+    .portrait { position: relative; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 48%; border-radius: 28px; filter: saturate(.84) contrast(1.03); }
+    .aside-note {
+      position: absolute;
+      left: -54px;
+      bottom: 56px;
+      width: 188px;
+      padding: 20px;
+      border-radius: 18px;
+      background: var(--navy);
+      color: white;
+      font-size: .88rem;
+      font-weight: 700;
+      line-height: 1.8;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      box-shadow: 0 20px 50px rgba(12,49,84,.23);
+    }
+
+    .ticker { overflow: hidden; border-block: 1px solid var(--line); padding: 16px 0; background: var(--paper-2); }
+    .ticker-track { display: flex; width: max-content; gap: 34px; animation: drift 24s linear infinite; font-family: var(--serif); font-style: italic; font-size: clamp(1.35rem, 2vw, 1.85rem); color: var(--navy); }
+    @keyframes drift { to { transform: translateX(-50%); } }
+
+    section { scroll-margin-top: 90px; }
+    .section-head { display: grid; grid-template-columns: .55fr 1.45fr; gap: 30px; align-items: end; margin-bottom: 48px; }
+    .section-kicker { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--muted); }
+    .section-title { margin: 0; font-size: clamp(2.7rem, 5.6vw, 5rem); line-height: .94; letter-spacing: -.055em; }
+    .section-title em { font-family: var(--serif); font-weight: 400; color: var(--navy); }
+
+    .work { padding-block: clamp(90px, 11vw, 150px); }
+    .project-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 22px; }
+    .project-card {
+      position: relative;
+      min-height: 470px;
+      overflow: hidden;
+      border: 0;
+      border-radius: 24px;
+      padding: 0;
+      background: var(--navy);
+      color: white;
+      text-align: left;
+      cursor: pointer;
+    }
+    .project-card:nth-child(1) { grid-column: span 8; min-height: 590px; }
+    .project-card:nth-child(2) { grid-column: span 4; min-height: 590px; }
+    .project-card:nth-child(3), .project-card:nth-child(4), .project-card:nth-child(5) { grid-column: span 4; }
+    .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .35s ease; }
+    .project-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 38%, rgba(0,0,0,.78)); }
+    .project-card:hover img, .project-card:focus-visible img { transform: scale(1.035); filter: saturate(.78); }
+    .project-info { position: absolute; z-index: 2; inset: auto 28px 26px; display: flex; align-items: end; justify-content: space-between; gap: 22px; }
+    .project-meta { margin-bottom: 8px; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; opacity: .75; }
+    .project-title { margin: 0; font-size: clamp(1.7rem, 3vw, 2.7rem); line-height: .98; letter-spacing: -.04em; }
+    .project-arrow { display: grid; place-items: center; flex: 0 0 auto; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.6); border-radius: 50%; font-size: 1.2rem; }
+
+    .services { padding-block: clamp(90px, 11vw, 150px); background: var(--ink); color: white; }
+    .services .section-kicker { color: var(--gold); }
+    .services .section-title em { color: var(--gold); }
+    .service-list { border-top: 1px solid rgba(255,255,255,.22); }
+    .service { display: grid; grid-template-columns: 80px 1fr 1fr; gap: 28px; align-items: baseline; padding: 30px 0; border-bottom: 1px solid rgba(255,255,255,.22); }
+    .service-number { color: var(--gold); font-size: .82rem; }
+    .service h3 { margin: 0; font-size: clamp(1.4rem, 2.5vw, 2rem); letter-spacing: -.03em; }
+    .service p { margin: 0; max-width: 590px; color: rgba(255,255,255,.66); }
+
+    .about { padding-block: clamp(90px, 11vw, 150px); background: var(--blue); }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(44px, 8vw, 120px); align-items: start; }
+    .about-photo { aspect-ratio: 4/5; object-fit: cover; object-position: 50% 48%; border-radius: 28px; }
+    .about-copy h2 { font-size: clamp(3rem, 6vw, 5.6rem); line-height: .92; letter-spacing: -.06em; margin-bottom: 40px; }
+    .about-copy h2 em { display: block; font-family: var(--serif); color: var(--navy); font-weight: 400; }
+    .about-copy > p { font-size: clamp(1.08rem, 1.7vw, 1.3rem); max-width: 700px; }
+    .facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 28px; margin-top: 46px; padding-top: 28px; border-top: 1px solid rgba(12,49,84,.24); }
+    .fact strong { display: block; font-size: 1.12rem; color: var(--navy); }
+    .fact span { color: var(--muted); font-size: .92rem; }
+
+    .contact { padding-block: clamp(90px, 12vw, 160px); }
+    .contact-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: end; }
+    .contact h2 { margin-bottom: 30px; font-size: clamp(3.6rem, 8vw, 8.5rem); line-height: .84; letter-spacing: -.075em; }
+    .contact h2 em { display: block; margin-left: .85em; font-family: var(--serif); font-weight: 400; color: var(--navy); }
+    .contact-copy { max-width: 510px; font-size: 1.1rem; }
+    .contact-card { padding: 34px; border-radius: 24px; background: var(--navy); color: white; }
+    .contact-card small { display: block; margin-bottom: 26px; color: #bed4df; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+    .email { display: block; font-size: clamp(1.25rem, 2.3vw, 2rem); font-weight: 700; overflow-wrap: anywhere; }
+    .phone { display: block; margin-top: 20px; color: rgba(255,255,255,.75); }
+    footer { padding: 26px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .84rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; }
+
+    .modal { position: fixed; inset: 0; z-index: 60; display: none; place-items: center; padding: 22px; background: rgba(9,18,26,.84); backdrop-filter: blur(10px); }
+    .modal.is-open { display: grid; }
+    .modal-panel { width: min(100%, 1040px); max-height: min(90svh, 840px); overflow-y: auto; border-radius: 26px; background: var(--paper); box-shadow: 0 30px 100px rgba(0,0,0,.36); }
+    .modal-image { width: 100%; height: min(42vh, 390px); object-fit: cover; }
+    .modal-body { padding: clamp(28px, 5vw, 58px); }
+    .modal-top { display: flex; justify-content: space-between; gap: 28px; align-items: start; }
+    .modal h2 { margin: 0; font-size: clamp(2.5rem, 5vw, 4.7rem); line-height: .93; letter-spacing: -.055em; }
+    .modal-close { flex: 0 0 auto; width: 46px; height: 46px; border: 1px solid var(--ink); border-radius: 50%; background: transparent; cursor: pointer; }
+    .modal-summary { max-width: 740px; margin: 28px 0 38px; font-size: 1.13rem; }
+    .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding-top: 28px; border-top: 1px solid var(--line); }
+    .case-grid h3 { margin-bottom: 10px; color: var(--navy); font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; }
+    .case-grid p { margin: 0; color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-aside { width: min(82%, 470px); margin: 20px auto 0; }
+      .project-card:nth-child(n) { grid-column: span 6; min-height: 480px; }
+      .project-card:nth-child(1) { grid-column: 1 / -1; }
+      .section-head, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .service { grid-template-columns: 60px 1fr; }
+      .service p { grid-column: 2; }
+      .contact-card { max-width: 540px; }
+    }
+
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 26px, 1320px); }
+      .nav { min-height: 64px; }
+      .nav-links a:not(.contact-link) { display: none; }
+      .hero { padding-top: 54px; }
+      h1 { font-size: clamp(3.4rem, 18vw, 5.5rem); }
+      .aside-note { left: -4px; bottom: -24px; }
+      .section-head { margin-bottom: 32px; }
+      .project-grid { gap: 14px; }
+      .project-card:nth-child(n) { grid-column: 1 / -1; min-height: 430px; }
+      .project-info { inset: auto 20px 20px; }
+      .service { grid-template-columns: 42px 1fr; gap: 14px; }
+      .facts, .case-grid { grid-template-columns: 1fr; }
+      .footer-row { flex-direction: column; }
+      .modal { padding: 10px; }
+      .modal-panel { border-radius: 20px; max-height: 94svh; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ticker-track { animation: none; }
+      .project-card img, .button { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="#top">Pamela Hoi</a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a class="contact-link" href="#contact">Work with me</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div>
+        <p class="eyebrow">Creative Marketer + Designer · Kuala Lumpur</p>
+        <h1>Ideas that make sense. <em>Design that carries them.</em></h1>
+        <p class="hero-copy">I help brands decide what to communicate, shape the creative direction and carry the idea across campaigns, content and brand experiences.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#work">View selected work</a>
+          <a class="button" href="mailto:hkypamela@gmail.com">Start a conversation</a>
+        </div>
+      </div>
+      <aside class="hero-aside" aria-label="Portrait of Pamela Hoi">
+        <div class="portrait-wrap">
+          <img class="portrait" src="assets/pam.jpg" alt="Pamela Hoi seated at an outdoor café">
+          <div class="aside-note">Strategy<br>+ Creative<br>+ Execution</div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track"><span>Campaign creative</span><span>Brand systems</span><span>Performance design</span><span>Merchandise</span><span>Content support</span><span>Campaign creative</span><span>Brand systems</span><span>Performance design</span><span>Merchandise</span><span>Content support</span></div>
+    </div>
+
+    <section class="work shell" id="work">
+      <div class="section-head">
+        <div class="section-kicker">Selected work · 2023–2026</div>
+        <h2 class="section-title">The idea, the system, <em>the rollout.</em></h2>
+      </div>
+
+      <div class="project-grid">
+        <button class="project-card" data-project="reserve" aria-label="Open StashAway Reserve case study">
+          <img src="assets/reserve.jpg" alt="StashAway Reserve wealth campaign image">
+          <span class="project-info"><span><span class="project-meta">Brand refresh · Performance · Landing page</span><span class="project-title">StashAway Reserve</span></span><span class="project-arrow">↗</span></span>
+        </button>
+        <button class="project-card" data-project="performance" aria-label="Open Performance Creative case study">
+          <img src="assets/reserve-ads.jpg" alt="A selection of paid social advertisements">
+          <span class="project-info"><span><span class="project-meta">Paid social · Localisation</span><span class="project-title">Performance Creative</span></span><span class="project-arrow">↗</span></span>
+        </button>
+        <button class="project-card" data-project="kt" aria-label="Open K and T Fresh case study">
+          <img src="assets/kt-fresh.jpg" alt="K and T Fresh brand applications">
+          <span class="project-info"><span><span class="project-meta">Identity · Packaging</span><span class="project-title">K&amp;T Fresh</span></span><span class="project-arrow">↗</span></span>
+        </button>
+        <button class="project-card" data-project="youth" aria-label="Open Youth Alive Malaysia case study">
+          <img src="assets/youth-alive.jpg" alt="Youth Alive Malaysia Elohim merchandise">
+          <span class="project-info"><span><span class="project-meta">Youth branding · Merchandise</span><span class="project-title">Youth Alive Malaysia</span></span><span class="project-arrow">↗</span></span>
+        </button>
+        <button class="project-card" data-project="merch" aria-label="Open StashAway merchandise case study">
+          <img src="assets/stashaway-merch.jpg" alt="StashAway merchandise tote bag mock-ups">
+          <span class="project-info"><span><span class="project-meta">Concept · Brand experience</span><span class="project-title">StashAway Merchandise</span></span><span class="project-arrow">↗</span></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-kicker">How I can help</div>
+          <h2 class="section-title">Creative support from brief <em>to rollout.</em></h2>
+        </div>
+        <div class="service-list">
+          <article class="service"><span class="service-number">01</span><h3>Brand and campaign creative</h3><p>Key visuals, launch systems and adaptations that keep one idea coherent across touchpoints.</p></article>
+          <article class="service"><span class="service-number">02</span><h3>Performance and CRM creative</h3><p>Paid social, email, in-app and localised work built around a clear message and hierarchy.</p></article>
+          <article class="service"><span class="service-number">03</span><h3>Content support</h3><p>Social concepts, design systems and short-form video editing for teams that need reliable creative capacity.</p></article>
+          <article class="service"><span class="service-number">04</span><h3>Merchandise and event creative</h3><p>Concepts that feel intentional across garments, objects, print and physical spaces.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-grid shell">
+        <img class="about-photo" src="assets/pam.jpg" alt="Portrait of Pamela Hoi">
+        <div class="about-copy">
+          <p class="section-kicker">About Pam</p>
+          <h2>Actuary by degree, <em>designer by choice.</em></h2>
+          <p>I’m a creative marketer and designer with six years of experience across fintech, performance advertising, brand identity, merchandise and event creative. I’m at my best when I can understand the communication problem, shape the idea and stay close enough to execution to make it real.</p>
+          <div class="facts">
+            <div class="fact"><strong>Based in Kuala Lumpur</strong><span>Supporting Malaysian, Hong Kong and regional teams</span></div>
+            <div class="fact"><strong>Cross-functional by nature</strong><span>Comfortable working with marketers, performance teams and stakeholders</span></div>
+            <div class="fact"><strong>Strategy + craft</strong><span>Clear thinking without losing the visual details</span></div>
+            <div class="fact"><strong>Available for freelance</strong><span>Projects, monthly creative support and collaborations</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact shell" id="contact">
+      <div class="contact-grid">
+        <div>
+          <p class="section-kicker">Available for freelance and creative support</p>
+          <h2>Let’s work <em>together.</em></h2>
+          <p class="contact-copy">Tell me what your team is trying to achieve and where the creative execution is getting stuck.</p>
+        </div>
+        <div class="contact-card">
+          <small>Contact</small>
+          <a class="email" href="mailto:hkypamela@gmail.com">hkypamela@gmail.com</a>
+          <a class="phone" href="tel:+60109336062">+60 10 933 6062</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="footer-row shell"><span>© 2026 Pamela Hoi</span><span>Creative Marketer + Designer</span></div></footer>
+
+  <div class="modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-panel">
+      <img class="modal-image" id="modal-image" src="assets/reserve.jpg" alt="">
+      <div class="modal-body">
+        <div class="modal-top"><div><p class="section-kicker" id="modal-meta"></p><h2 id="modal-title"></h2></div><button class="modal-close" type="button" aria-label="Close case study">×</button></div>
+        <p class="modal-summary" id="modal-summary"></p>
+        <div class="case-grid">
+          <div><h3>Challenge</h3><p id="modal-challenge"></p></div>
+          <div><h3>My role</h3><p id="modal-role"></p></div>
+          <div><h3>Approach</h3><p id="modal-approach"></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const projects = {
+      reserve: {
+        title: 'StashAway Reserve', meta: 'Brand refresh · 2026', image: 'assets/reserve.jpg',
+        summary: 'A premium wealth proposition made warmer, clearer and more approachable across the campaign journey.',
+        challenge: 'Communicate a sophisticated wealth offering without making it feel cold, complicated or overly institutional.',
+        role: 'Visual direction, performance creative, landing-page design and campaign adaptations.',
+        approach: 'Warm aspirational imagery, restrained premium typography and direct benefit-led messages carried from paid social into the landing page.'
+      },
+      performance: {
+        title: 'Performance Creative', meta: 'Paid social · Regional campaigns', image: 'assets/reserve-ads.jpg',
+        summary: 'Focused marketing creative designed to make product-heavy or technical messages easier to notice and understand.',
+        challenge: 'Different audiences and markets needed clear, compelling messages without losing product accuracy or brand consistency.',
+        role: 'Creative concepts, static ads, campaign variations and localisation across Singapore, Malaysia and Hong Kong.',
+        approach: 'Start with one primary message, build a strong visual hierarchy, then adapt the system to the market, format and audience.'
+      },
+      kt: {
+        title: 'K&T Fresh', meta: 'Brand identity · 2026', image: 'assets/kt-fresh.jpg',
+        summary: 'A fresh-produce identity built to feel wholesome, distinctive and ready for gifting, delivery and retail.',
+        challenge: 'Create one identity that could stretch naturally across packaging, produce boxes, uniforms and customer touchpoints.',
+        role: 'Brand concept, logo system, colour palette and visual applications.',
+        approach: 'A gift-box structure holds vibrant fruit segments, while the leaf works like a ribbon and reconnects the idea to freshness and growth.'
+      },
+      youth: {
+        title: 'Youth Alive Malaysia', meta: 'Youth branding · Merchandise', image: 'assets/youth-alive.jpg',
+        summary: 'Faith-based merchandise designed to feel wearable beyond the event itself.',
+        challenge: 'Create youth merchandise that participants would genuinely choose to wear in everyday life.',
+        role: 'Merchandise concept, graphic system and apparel application.',
+        approach: 'Use familiar sports and streetwear codes, then integrate the message into the garment instead of treating it as a logo placement.'
+      },
+      merch: {
+        title: 'StashAway Merchandise', meta: 'Brand experience · 2025', image: 'assets/stashaway-merch.jpg',
+        summary: 'A merchandise system that expresses the relationship between StashAway and its clients.',
+        challenge: 'Move beyond placing the corporate logo on every item and give the collection a recognisable idea of its own.',
+        role: 'Concept development, key visual and applications across employee and client touchpoints.',
+        approach: 'A continuous line and handshake communicate partnership, then adapt across tote bags, notebooks and apparel.'
+      }
+    };
+
+    const modal = document.getElementById('project-modal');
+    const closeButton = modal.querySelector('.modal-close');
+    let previousFocus;
+
+    function openProject(key) {
+      const p = projects[key];
+      if (!p) return;
+      previousFocus = document.activeElement;
+      document.getElementById('modal-title').textContent = p.title;
+      document.getElementById('modal-meta').textContent = p.meta;
+      document.getElementById('modal-summary').textContent = p.summary;
+      document.getElementById('modal-challenge').textContent = p.challenge;
+      document.getElementById('modal-role').textContent = p.role;
+      document.getElementById('modal-approach').textContent = p.approach;
+      const modalImage = document.getElementById('modal-image');
+      modalImage.src = p.image;
+      modalImage.alt = p.title + ' project image';
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      closeButton.focus();
+    }
+
+    function closeProject() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      previousFocus?.focus();
+    }
+
+    document.querySelectorAll('[data-project]').forEach(card => card.addEventListener('click', () => openProject(card.dataset.project)));
+    closeButton.addEventListener('click', closeProject);
+    modal.addEventListener('click', event => { if (event.target === modal) closeProject(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal.classList.contains('is-open')) closeProject(); });
+  </script>
+</body>
+</html>
