@@ -8,6 +8,7 @@ This is a static GitHub Pages website. You can edit it directly in GitHub withou
 - `styles.css` — colours, spacing, typography and responsive layout
 - `script.js` — project pop-up content and interactions
 - `assets/v2/` — all images used by the current design
+- `assets/fonts/` — place the Neue Metana webfont here when licensed
 
 ## Change a homepage project image
 
@@ -88,25 +89,13 @@ Open `index.html`, search for the exact sentence and edit it. Keep the surroundi
 
 ## Use Neue Metana
 
-The Figma file uses Neue Metana. The website currently uses a close system fallback because the licensed web-font file was not included in Figma.
+Headings, project titles and bold text are set to Neue Metana; the rest of the site uses Helvetica. The CSS is ready, but no font file was included in the Figma export. Visitors will see Helvetica until you add the webfont.
 
-If you own a web licence, upload `NeueMetana-Bold.woff2` to `assets/fonts/`, then add this at the top of `styles.css`:
+If you have a Neue Metana **webfont licence**, upload the bold WOFF2 file to `assets/fonts/` and name it exactly `NeueMetana-Bold.woff2`. The existing `@font-face` rule at the top of `styles.css` will load it automatically; no CSS edit is needed. If your licensed file has a different name, either rename it or change that URL in `styles.css`. Refresh with a hard reload after GitHub Pages publishes the change.
 
-```css
-@font-face {
-  font-family: "Neue Metana";
-  src: url("assets/fonts/NeueMetana-Bold.woff2") format("woff2");
-  font-weight: 700 900;
-  font-style: normal;
-  font-display: swap;
-}
-```
+The typeface creator sells [Neue Metana webfont licences](https://dirtylinestudio.com/product/neue-metana-font-family/); the free/demo version is described as personal use only. A font available inside Figma is not automatically a file that GitHub Pages can serve.
 
-Change the `--display` line to:
-
-```css
---display: "Neue Metana", "Arial Black", "Helvetica Neue", sans-serif;
-```
+To change the overall page scale further, edit the pixel values and `clamp()` sizes in `styles.css`. The current layout is about 90% of the original, with mobile body text kept readable.
 
 ## Publish changes
 
