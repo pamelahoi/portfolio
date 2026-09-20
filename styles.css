@@ -170,6 +170,68 @@ section { scroll-margin-top: 20px; }
 .project-card:focus-visible img { transform: scale(1.035); filter: saturate(.9); }
 .project-card:focus-visible { outline: 4px solid #111; outline-offset: 5px; }
 
+.brands {
+  overflow: hidden;
+  background: #f7f6f4;
+  color: var(--ink);
+}
+.brands-inner {
+  padding: 78px 0 84px;
+  border-top: 1px solid #e5e3df;
+}
+.brands h2 {
+  max-width: 1138px;
+  margin: 0 auto 45px;
+  padding: 0 24px;
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 3vw, 2.55rem);
+  line-height: 1.05;
+  letter-spacing: -.045em;
+}
+.brand-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+.brand-track {
+  display: flex;
+  width: max-content;
+  animation: brand-scroll 80s linear infinite;
+}
+.brand-marquee:hover .brand-track { animation-play-state: paused; }
+.brand-list {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 64px;
+  padding-right: 64px;
+}
+.brand-mark {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 74px;
+  color: #4b4946;
+  font-family: var(--sans);
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -.045em;
+  text-align: center;
+  white-space: nowrap;
+}
+.brand-mark img {
+  display: block;
+  width: auto;
+  max-width: 165px;
+  height: auto;
+  max-height: 58px;
+  object-fit: contain;
+}
+@keyframes brand-scroll {
+  to { transform: translateX(-50%); }
+}
+
 .about { background: var(--ink); color: #fff; }
 .about-inner {
   display: grid;
@@ -356,6 +418,11 @@ section { scroll-margin-top: 20px; }
   .project-column { gap: 18px; }
   .project-column-offset { padding-top: 0; }
   .project-card span { right: 16px; bottom: 15px; left: 16px; font-size: 1.4rem; }
+  .brands-inner { padding: 58px 0 62px; }
+  .brands h2 { margin-bottom: 30px; font-size: 1.9rem; }
+  .brand-list { gap: 40px; padding-right: 40px; }
+  .brand-mark { min-width: 100px; height: 58px; font-size: 1.1rem; }
+  .brand-mark img { max-width: 135px; max-height: 48px; }
   .about-inner, .contact-inner { max-width: none; min-height: 0; padding: 65px 24px; }
   .about-inner { grid-template-columns: 1fr; gap: 41px; }
   .about-photo { width: min(63vw, 315px); justify-self: center; }
@@ -377,4 +444,8 @@ section { scroll-margin-top: 20px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; }
+  .brand-marquee { overflow-x: auto; }
+  .brand-track { animation: none; }
+  .brand-list { padding-left: 24px; }
+  .brand-list[aria-hidden="true"] { display: none; }
 }

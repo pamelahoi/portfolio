@@ -15,6 +15,15 @@ const PROJECTS = {
   bori: PLACEHOLDER_PROJECT
 };
 
+// Duplicate the visible brand list once for a seamless, continuous loop.
+// Only edit the original list in index.html; this copy updates automatically.
+const brandList = document.querySelector(".brand-list");
+if (brandList) {
+  const brandCopy = brandList.cloneNode(true);
+  brandCopy.setAttribute("aria-hidden", "true");
+  brandList.after(brandCopy);
+}
+
 const modal = document.querySelector("#project-modal");
 const windowElement = modal.querySelector(".project-window");
 const closeButton = modal.querySelector(".modal-close");

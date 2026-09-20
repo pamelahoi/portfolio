@@ -9,6 +9,27 @@ This is a static GitHub Pages website. You can edit it directly in GitHub withou
 - `script.js` — project pop-up content and interactions
 - `assets/v2/` — all images used by the current design
 - `assets/fonts/` — place the Neue Metana webfont here when licensed
+- `assets/brand-logos/` — add your brand logo files here
+
+## Edit the scrolling brand logos
+
+The section between the project cards and About Pam contains 20 brand names from your list as **text placeholders**. They are not the official logos yet. Open `index.html`, search for `brand-list`, and edit only the **first** list. `script.js` makes the second copy automatically so the row loops without a jump.
+
+To replace a name with an actual logo, upload its SVG, PNG or WebP file to `assets/brand-logos/`. Then change, for example:
+
+```html
+<span class="brand-mark">Spritzer</span>
+```
+
+to:
+
+```html
+<span class="brand-mark"><img src="assets/brand-logos/spritzer.svg" alt="Spritzer"></span>
+```
+
+Repeat for the logos you have. Keep at most 20 entries; you can mix actual logos with text placeholders while you collect the files. For clear display, use SVGs or transparent PNGs and crop out large empty margins. The display size is controlled by `.brand-mark img` in `styles.css`.
+
+The line loops automatically, pauses when hovered, and becomes a manually scrollable row for visitors who prefer reduced motion. To change its speed, edit `animation: brand-scroll 80s linear infinite` in `styles.css`; a smaller number moves faster.
 
 ## Change a homepage project image
 
