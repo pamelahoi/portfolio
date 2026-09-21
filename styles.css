@@ -387,6 +387,7 @@ section { scroll-margin-top: 20px; }
   margin: 0 0 47px;
   font-size: clamp(1.04rem, 1.89vw, 1.58rem);
   line-height: 1.18;
+  text-align: center;
 }
 .project-hero { width: 100%; aspect-ratio: 942 / 522; object-fit: cover; }
 .project-details {
