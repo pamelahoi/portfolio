@@ -13,7 +13,27 @@ const PLACEHOLDER_PROJECT = {
 // data-project value on its card in index.html. See EDITING_GUIDE.md.
 const PROJECTS = {
   bori: PLACEHOLDER_PROJECT,
-  spritzer: { layout: "video-case" }
+  reserve: {
+    layout: "custom-case",
+    contentId: "reserve-case-study",
+    labelId: "reserve-modal-title"
+  },
+  "youth-alive": {
+    layout: "custom-case",
+    contentId: "youth-alive-case-study",
+    labelId: "youth-alive-modal-title"
+  },
+  "stashaway-kit": {
+    layout: "custom-case",
+    contentId: "stashaway-kit-case-study",
+    labelId: "stashaway-kit-modal-title"
+  },
+  spritzer: {
+    layout: "custom-case",
+    contentId: "spritzer-case-study",
+    labelId: "spritzer-modal-title",
+    video: true
+  }
 };
 
 // Duplicate the visible brand list once for a seamless, continuous loop.
