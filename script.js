@@ -1,7 +1,7 @@
 // Default content used by every project card until you add project-specific content.
 const PLACEHOLDER_PROJECT = {
   title: "Bori Bakery<br><span>보리베이커리</span>",
-  category: "BRAND DESIGN • 2026",
+  category: "BRAND DESIGN",
   summary: "A contemporary Korean bakery specialising in freshly baked soft breads, salt bread and filled buns. The experience should feel like discovering a small bakery in Seoul: warm, comforting and slightly playful, but still sophisticated enough to feel premium.",
   image: "assets/v2/bori-case.png",
   imageAlt: "Bori Bakery storefront and brand identity",
