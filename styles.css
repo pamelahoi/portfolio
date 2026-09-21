@@ -646,3 +646,30 @@ section { scroll-margin-top: 20px; }
   .brand-list { padding-left: 24px; }
   .brand-list[aria-hidden="true"] { display: none; }
 }
+
+/* Show complete project images without cropping */
+.case-board-slice {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  overflow: visible;
+}
+
+.case-board-slice img {
+  display: block;
+  width: min(100%, 900px);
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  transform: none;
+  object-fit: contain;
+}
+
+/* Remove the previous cropping settings */
+.reserve-ads-slice,
+.reserve-site-slice,
+.youth-visuals-slice,
+.kit-visuals-slice {
+  aspect-ratio: auto;
+  --slice-shift: 0%;
+}
