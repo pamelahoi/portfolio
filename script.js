@@ -12,7 +12,8 @@ const PLACEHOLDER_PROJECT = {
 // Add a project here when its case study is ready. The key must match the
 // data-project value on its card in index.html. See EDITING_GUIDE.md.
 const PROJECTS = {
-  bori: PLACEHOLDER_PROJECT
+  bori: PLACEHOLDER_PROJECT,
+  spritzer: { layout: "video-case" }
 };
 
 // Duplicate the visible brand list once for a seamless, continuous loop.
@@ -28,6 +29,8 @@ const modal = document.querySelector("#project-modal");
 const windowElement = modal.querySelector(".project-window");
 const closeButton = modal.querySelector(".modal-close");
 const cards = document.querySelectorAll(".project-card");
+const standardProjectContent = modal.querySelector(".project-content:not(.project-video-case)");
+const videoProjectContent = modal.querySelector(".project-video-case");
 let previousFocus = null;
 
 const fields = {
@@ -42,13 +45,23 @@ const fields = {
 function openProject(projectKey) {
   const project = PROJECTS[projectKey] || PLACEHOLDER_PROJECT;
   previousFocus = document.activeElement;
-  fields.title.innerHTML = project.title;
-  fields.category.textContent = project.category;
-  fields.summary.textContent = project.summary;
-  fields.image.src = project.image;
-  fields.image.alt = project.imageAlt;
-  fields.role.textContent = project.role;
-  fields.approach.textContent = project.approach;
+
+  const isVideoCase = project.layout === "video-case";
+  standardProjectContent.hidden = isVideoCase;
+  videoProjectContent.hidden = !isVideoCase;
+  windowElement.classList.toggle("is-video-case", isVideoCase);
+  modal.setAttribute("aria-labelledby", isVideoCase ? "spritzer-modal-title" : "modal-title");
+
+  if (!isVideoCase) {
+    fields.title.innerHTML = project.title;
+    fields.category.textContent = project.category;
+    fields.summary.textContent = project.summary;
+    fields.image.src = project.image;
+    fields.image.alt = project.imageAlt;
+    fields.role.textContent = project.role;
+    fields.approach.textContent = project.approach;
+  }
+
   windowElement.scrollTop = 0;
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
@@ -57,6 +70,7 @@ function openProject(projectKey) {
 }
 
 function closeProject() {
+  modal.querySelectorAll("video").forEach((video) => video.pause());
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
