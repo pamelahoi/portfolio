@@ -49,8 +49,11 @@ const modal = document.querySelector("#project-modal");
 const windowElement = modal.querySelector(".project-window");
 const closeButton = modal.querySelector(".modal-close");
 const cards = document.querySelectorAll(".project-card");
-const standardProjectContent = modal.querySelector(".project-content:not(.project-video-case)");
-const videoProjectContent = modal.querySelector(".project-video-case");
+const standardProjectContent = modal.querySelector(
+  ".project-content:not(.project-video-case):not(.project-figma-case)"
+);
+
+const projectContents = modal.querySelectorAll(".project-content");
 let previousFocus = null;
 
 const fields = {
@@ -66,13 +69,38 @@ function openProject(projectKey) {
   const project = PROJECTS[projectKey] || PLACEHOLDER_PROJECT;
   previousFocus = document.activeElement;
 
-  const isVideoCase = project.layout === "video-case";
-  standardProjectContent.hidden = isVideoCase;
-  videoProjectContent.hidden = !isVideoCase;
-  windowElement.classList.toggle("is-video-case", isVideoCase);
-  modal.setAttribute("aria-labelledby", isVideoCase ? "spritzer-modal-title" : "modal-title");
+  const isCustomCase = project.layout === "custom-case";
 
-  if (!isVideoCase) {
+  // Hide every project first.
+  projectContents.forEach((content) => {
+    content.hidden = true;
+  });
+
+  windowElement.classList.toggle(
+    "is-video-case",
+    Boolean(project.video)
+  );
+
+  windowElement.classList.toggle(
+    "is-figma-case",
+    isCustomCase && !project.video
+  );
+
+  if (isCustomCase) {
+    const selectedContent = document.getElementById(project.contentId);
+
+    if (selectedContent) {
+      selectedContent.hidden = false;
+    } else {
+      console.error(`Missing project content: ${project.contentId}`);
+    }
+
+    modal.setAttribute("aria-labelledby", project.labelId);
+  } else {
+    // Used by Bori and normal data-based projects.
+    standardProjectContent.hidden = false;
+    modal.setAttribute("aria-labelledby", "modal-title");
+
     fields.title.innerHTML = project.title;
     fields.category.textContent = project.category;
     fields.summary.textContent = project.summary;
