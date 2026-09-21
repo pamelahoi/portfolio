@@ -382,6 +382,7 @@ section { scroll-margin-top: 20px; }
   font-family: var(--display);
   font-size: clamp(1.17rem, 2.52vw, 1.8rem);
   letter-spacing: .01em;
+  text-align: center;
 }
 .project-summary {
   margin: 0 0 47px;
