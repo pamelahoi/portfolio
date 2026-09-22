@@ -681,3 +681,17 @@ section { scroll-margin-top: 20px; }
   margin-right: auto;
   --slice-shift: 0%;
 }
+
+/* Prevent close button from pushing project content left */
+.modal-close {
+  float: none;
+  display: block;
+  margin: 25px 25px -86px auto;
+}
+
+/* Mobile close-button spacing */
+@media (max-width: 760px) {
+  .modal-close {
+    margin: 16px 16px -58px auto;
+  }
+}
