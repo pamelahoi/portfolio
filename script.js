@@ -33,7 +33,12 @@ const PROJECTS = {
     contentId: "spritzer-case-study",
     labelId: "spritzer-modal-title",
     video: true
-  }
+  },
+   gen412: {
+    layout: "custom-case",
+    contentId: "gen412-case-study",
+    labelId: "gen412-modal-title",
+    video: true
 };
 
 // Duplicate the visible brand list once for a seamless, continuous loop.
