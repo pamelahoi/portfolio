@@ -647,12 +647,17 @@ section { scroll-margin-top: 20px; }
   .brand-list[aria-hidden="true"] { display: none; }
 }
 
-/* Show complete project images without cropping */
+/* Full, centred project images */
 .case-board-slice {
+  position: relative;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: auto;
   aspect-ratio: auto;
   overflow: visible;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .case-board-slice img {
@@ -660,16 +665,19 @@ section { scroll-margin-top: 20px; }
   width: min(100%, 900px);
   height: auto;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
   transform: none;
   object-fit: contain;
 }
 
-/* Remove the previous cropping settings */
+/* Remove the original crop and offset settings */
 .reserve-ads-slice,
 .reserve-site-slice,
 .youth-visuals-slice,
 .kit-visuals-slice {
+  width: 100%;
   aspect-ratio: auto;
+  margin-left: auto;
+  margin-right: auto;
   --slice-shift: 0%;
 }
