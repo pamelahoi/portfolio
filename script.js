@@ -43,7 +43,19 @@ const PROJECTS = {
     layout: "custom-case",
     contentId: "gen412-case-study",
     labelId: "gen412-modal-title"
-  }
+  },
+
+ knt: {
+    layout: "custom-case",
+    contentId: "knt-case-study",
+    labelId: "knt-modal-title"
+  },
+
+   bori: {
+    layout: "custom-case",
+    contentId: "bori-case-study",
+    labelId: "bori-modal-title"
+  },
 };
 
 // Duplicate the visible brand list once for a seamless, continuous loop.
