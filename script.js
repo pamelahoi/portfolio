@@ -56,6 +56,12 @@ const PROJECTS = {
     contentId: "bori-case-study",
     labelId: "bori-modal-title"
   },
+
+  luxeliving: {
+    layout: "custom-case",
+    contentId: "luxe-case-study",
+    labelId: "luxe-modal-title"
+  },
 };
 
 // Duplicate the visible brand list once for a seamless, continuous loop.
