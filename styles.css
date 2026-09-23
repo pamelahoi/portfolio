@@ -536,6 +536,10 @@ section { scroll-margin-top: 20px; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(14px, 2.7vw, 32px);
 }
+.gen412-video-grid {
+  width: min(80%, 830px);
+  margin-inline: auto;
+}
 .project-video-grid video {
   display: block;
   width: 100%;
