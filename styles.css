@@ -700,3 +700,26 @@ section { scroll-margin-top: 20px; }
     margin: 16px 16px -58px auto;
   }
 }
+
+/* ===== Case-study rhythm: one place controls spacing ===== */
+.project-figma-case:not([hidden]) {      /* :not([hidden]) so hidden cases stay hidden */
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 56px);           /* the ONLY vertical spacing between blocks */
+}
+.project-figma-case > * { margin-block: 0; }
+
+/* inside a block: reset margins, then space text with one rule */
+.figma-case-copy > *,
+.reserve-feature-grid h3,
+.reserve-feature-grid p,
+.reserve-feature-grid section { margin: 0; padding: 0; }
+.figma-case-copy > * + * { margin-top: 0.75em; }
+.reserve-feature-grid h3 + p { margin-top: 0.5em; }
+
+.reserve-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px 32px;
+  align-items: start;
+}
