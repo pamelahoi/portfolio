@@ -62,6 +62,12 @@ const PROJECTS = {
     contentId: "luxe-case-study",
     labelId: "luxe-modal-title"
   },
+  
+   snowball: {
+    layout: "custom-case",
+    contentId: "snowball-case-study",
+    labelId: "snowball-modal-title"
+  },
 };
 
 // Duplicate the visible brand list once for a seamless, continuous loop.
